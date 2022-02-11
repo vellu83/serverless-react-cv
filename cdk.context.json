@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=608899048109:domainName=vellu.info:region=us-east-1": {
+    "Id": "/hostedzone/Z0097317VLGHTIHB3OO4",
+    "Name": "vellu.info."
+  },
+  "hosted-zone:account=608899048109:domainName=vellu.info:region=eu-central-1": {
+    "Id": "/hostedzone/Z0097317VLGHTIHB3OO4",
+    "Name": "vellu.info."
+  }
+}
