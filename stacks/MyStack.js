@@ -7,7 +7,55 @@ export default class MyStack extends sst.Stack {
         // Create a HTTP API
         const api = new sst.Api(this, 'Api', {
             routes: {
-                'GET /': 'src/lambda.handler',
+                'GET /': {
+                    function: {
+                        //bundle: false,
+                        srcPath: 'src/',
+                        handler: 'lambda.root',
+                    },
+                },
+            },
+        });
+        api.addRoutes(this, {
+            'GET /jobs': {
+                function: {
+                    //  bundle: false,
+                    srcPath: 'src/',
+                    handler: 'lambda.jobs',
+                    environment: {
+                        MONGODB_URI: process.env.MONGODB_URI,
+                    },
+                },
+            },
+            'GET /education': {
+                function: {
+                    //bundle: false,
+                    srcPath: 'src/',
+                    handler: 'lambda.edu',
+                    environment: {
+                        MONGODB_URI: process.env.MONGODB_URI,
+                    },
+                },
+            },
+            'GET /links': {
+                function: {
+                    //bundle: false,
+                    srcPath: 'src/',
+                    handler: 'lambda.links',
+                    environment: {
+                        MONGODB_URI: process.env.MONGODB_URI,
+                    },
+                },
+            },
+            'GET /hobbies': {
+                function: {
+                    //bundle: false,
+                    srcPath: 'src/',
+                    handler: 'lambda.hobbies',
+                    environment: {
+                        MONGODB_URI: process.env.MONGODB_URI,
+                    },
+                },
             },
         });
 

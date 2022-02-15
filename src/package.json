@@ -1,0 +1,8 @@
+{
+    "name": "cv-api-mongodb-src",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "mongodb": "^4.2.1"
+    }
+}

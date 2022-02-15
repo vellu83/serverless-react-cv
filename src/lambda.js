@@ -12,6 +12,7 @@ async function connectToDatabase() {
     }
 
     // Connect to our MongoDB database hosted on MongoDB Atlas
+    console.log('Connecting to: ', process.env.MONGODB_URI)
     const client = await MongoClient.connect(process.env.MONGODB_URI);
 
     // Specify which database we want to use
@@ -20,7 +21,7 @@ async function connectToDatabase() {
     return cachedDb;
 }
 
-export async function handler(event, context) {
+export async function jobs(event, context) {
 
     context.callbackWaitsForEmptyEventLoop = false;
 
@@ -31,5 +32,60 @@ export async function handler(event, context) {
     return {
         statusCode: 200,
         body: JSON.stringify(jobs, null, 2)
+    };
+}
+
+export async function edu(event, context) {
+
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    const db = await connectToDatabase();
+
+    const educations = await db.collection('education').find({}).toArray();
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify(educations, null, 2)
+    };
+
+}
+
+export async function links(event, context) {
+
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    const db = await connectToDatabase();
+
+    const links = await db.collection('links').find({}).toArray();
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify(links, null, 2)
+    };
+
+}
+
+export async function hobbies(event, context) {
+
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    const db = await connectToDatabase();
+
+    const hobbies = await db.collection('hobbies').find({}).toArray();
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify(hobbies, null, 2)
+    };
+
+}
+
+export async function root(event, context) {
+
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify({ response: 'nothing to see here..' })
     };
 }

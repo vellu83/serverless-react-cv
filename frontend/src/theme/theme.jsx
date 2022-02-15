@@ -1,6 +1,11 @@
+
 import { createTheme } from '@mui/material/styles';
 
-export const theme = createTheme({
+
+export let theme = createTheme()
+console.log(theme.breakpoints.down('xl'))
+
+theme = createTheme(theme, {
   components: {
     MuiPaper: {
       defaultProps: {
@@ -19,7 +24,7 @@ export const theme = createTheme({
     },
     h1: {
       color: 'white',
-      fontSize: 50,
+      fontSize: 65,
       fontWeight: 'bold',
     },
     h2:{
@@ -31,9 +36,16 @@ export const theme = createTheme({
       color:'black',
       fontSize:22,
     },
+    h4: {
+      color:'#595959',
+      fontSize:19,
+    },
+    h5: {
+      color:'white',
+      fontSize:19,
+      fontWight:'bold'
+    }
   },
-  
-
   palette: {
     background: {
       default: '#f2f2f2',
@@ -43,36 +55,65 @@ export const theme = createTheme({
     backgroundColor: 'rgb(255,255,245)',
     width: '80%',
     marginTop: 30,
+    marginBottom:30,
+    maxWidth: 1200,
+    minWidth: 450
   },
+
   header: {
     padding: 10,
     backgroundColor: '#ff3300',
-    marginTop: 7,
+    [theme.breakpoints.down('xl')]: {
+      backgroundColor: 'black',
+    },
+    marginTop: 15,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     flexWrap: 'wrap',
   },
   headerItem: {
-    paddingLeft: 35,
-    paddingRight: 35,
+    display:'flex',
+    paddingLeft:40,
+    paddingRight:40,
+    flexDirection:'row'
   },
-  dataSheet: {
+
+  headerAvatar:{
+    display:'flex',
+    paddingRight:40,
+    alignItems:'center',
+  },
+
+  headerText: {
+    display:'flex',
+    flexDirection:'column',
+    paddingTop:6,
+    paddingBottom:6
+    
+  },
+
+  dataContainer :{
+    flexDirection:'row',
+    display:'flex',
+    
+    justifyContent:'center',
+    flexWrap:'wrap'
+    
+  },
+
+  dataColumn: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap:'wrap',
-    flexGrow: 1,
-    justifyContent: 'space-evenly',
-    padding: 20,
+    width:400,
+    flexDirection: 'column',
+    justifyContent:'flex-start',
+    //minWidth:400,
   },
-  leftColumn: {
+
+  section: {
     display: 'flex',
-    flexGrow:1,
-    backgroundColor:'#b3b3b3'
+    padding:40
   },
-  rightColumn: {
-    display: 'flex',
-    flexGrow:2
-  },
+
 });

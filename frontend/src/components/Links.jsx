@@ -6,62 +6,64 @@ import {
   ListItemIcon,
   Typography,
   Box,
+  Link,
 } from '@mui/material';
-import WorkIcon from '@mui/icons-material/Work';
+import CodeIcon from '@mui/icons-material/Code';
 import Loading from './Loading';
 import ErrorConnecting from './ErrorConnecting';
 
-const Work = () => {
-  const [jobs, setJobs] = useState(null);
+const Links = () => {
+  const [links, setLinks] = useState(null);
 
   useEffect(() => {
-    setJobs('loading');
+    setLinks('loading');
     const getJobs = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/jobs`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/links`, {
           method: 'GET',
         });
         const data = await response.json();
-        const sortedJobs = data.sort((a, b) => b.order - a.order);
-        setJobs(sortedJobs);
+        const sortedData = data.sort((a, b) => b.order - a.order);
+        setLinks(sortedData);
       } catch (error) {
         console.error(error);
-        setJobs('error');
+        setLinks('error');
       }
     };
     getJobs();
   }, []);
 
-  if (!jobs) {
+  if (!links) {
     return <></>;
   }
 
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Typography variant='h2'>Work experience</Typography>
-      {jobs === 'loading' && <Loading />}
-      {jobs === 'error' && <ErrorConnecting />}
+      <Typography variant='h2'>Projects</Typography>
+      {links === 'loading' && <Loading />}
+      {links === 'error' && <ErrorConnecting />}
 
-      {jobs !== 'loading' && jobs !== 'error' && (
+      {links !== 'loading' && links!== 'error' && (
         <List sx={{ width: '100%' }}>
-          {jobs.map((job) => {
+          {links.map((link) => {
             return (
-              <ListItem alignItems='flex-start' key={job.employer}>
+              <ListItem alignItems='flex-start' key={link.href}>
                 <ListItemIcon>
-                  <WorkIcon fontSize='large' />
+                  <CodeIcon fontSize='large' />
                 </ListItemIcon>
                 <ListItemText
                   primary={
                     <>
-                      <Typography variant='h4'>{job.dates}</Typography>
-                      <Typography variant='h3'>{job.employer}</Typography>
+                      <Link href={link.href} target='_blank' variant='body2'>{link.name}</Link>
                     </>
                   }
                   secondary={
                     <React.Fragment>
-                      <Typography variant='body2'>{job.title}</Typography>
-                      {job.tasks}
+                      <Typography variant='body2'>{link.description}</Typography>
+                      {link.longDesc && `Tools and frameworks used:`}
+                      <br/>
+                      {link.longDesc && link.longDesc}
                     </React.Fragment>
                   }
                 />
@@ -74,4 +76,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Links;
