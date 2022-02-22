@@ -33,7 +33,7 @@ const Hobbies = () => {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <>
       <Typography variant='h2'>Hobbies</Typography>
       {hobbies === 'loading' && <Loading />}
       {hobbies === 'error' && <ErrorConnecting />}
@@ -45,7 +45,7 @@ const Hobbies = () => {
            )
          })}</Typography>
       )}
-    </Box>
+    </>
   );
 };
 

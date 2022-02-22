@@ -5,7 +5,6 @@ import {
   ListItemText,
   ListItemIcon,
   Typography,
-  Box,
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import Loading from './Loading';
@@ -40,7 +39,7 @@ const Education = () => {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <>
       <Typography variant='h2'>Education</Typography>
       {education === 'loading' && <Loading/>}
       {education === 'error' && <ErrorConnecting/>}
@@ -72,7 +71,7 @@ const Education = () => {
           })}
         </List>
       )}
-    </Box>
+    </>
   );
 };
 

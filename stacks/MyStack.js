@@ -4,6 +4,8 @@ export default class MyStack extends sst.Stack {
     constructor(scope, id, props) {
         super(scope, id, props);
 
+        const stage = this.node.root.stage
+
         // Create a HTTP API
         const api = new sst.Api(this, 'Api', {
             routes: {
@@ -65,8 +67,9 @@ export default class MyStack extends sst.Stack {
                 // Pass in the API endpoint to our app
                 REACT_APP_API_URL: api.url,
             },
+
             customDomain: {
-                domainName: 'vellu.info',
+                domainName: stage === 'dev' ? 'dev.vellu.info' : 'vellu.info',
                 hostedZone: 'vellu.info',
             },
         });

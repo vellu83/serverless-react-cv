@@ -5,7 +5,6 @@ import {
   ListItemText,
   ListItemIcon,
   Typography,
-  Box,
 } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
 import Loading from './Loading';
@@ -38,7 +37,7 @@ const Work = () => {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <>
       <Typography variant='h2'>Work experience</Typography>
       {jobs === 'loading' && <Loading />}
       {jobs === 'error' && <ErrorConnecting />}
@@ -70,7 +69,7 @@ const Work = () => {
           })}
         </List>
       )}
-    </Box>
+    </>
   );
 };
 

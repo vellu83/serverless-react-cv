@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Box, Paper, useTheme, Typography, Avatar } from '@mui/material';
+import { Box, Paper, useTheme, Typography, Avatar, Grid } from '@mui/material';
 import Work from './Work';
 import Education from './Education';
 import Links from './Links';
@@ -11,23 +11,36 @@ const VelluPuh = React.lazy(() => import('./Puh'));
 const Main = () => {
   const theme = useTheme();
 
+
   return (
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <Paper style={theme.maincontainer}>
-        <Box style={theme.header}>
-          <Box style={theme.headerItem}>
+        <Grid
+          container
+          alignItems='center'
+          justifyContent='center'
+          paddingLeft={{sm:0,md:10}}
+          paddingRight={{sm:0,md:10}}
+          paddingTop={4}
+          paddingBottom={4}
+          style={theme.header}
+        >
+          <Grid item sm={12} md={6}>
             <Typography variant='h1'>CV</Typography>
-          </Box>
-          <Box style={theme.headerItem}>
-            <Box style={theme.headerAvatar}>
+          </Grid>
+
+          <Grid item container sm={12} md={6} direction='row' spacing={3}>
+            <Grid item >
               <Avatar
+                
+                md={3}
                 alt='Veli-Matti Remander'
                 src={avatar}
                 sx={{ width: 85, height: 85 }}
               />
-            </Box>
+            </Grid>
 
-            <Box style={theme.headerText}>
+            <Grid item direction='column'  >
               <Suspense fallback={<div>ladataan...</div>}>
                 <Typography sx={{ flexGrow: 1 }} variant='h5'>
                   Veli-Matti Remander
@@ -38,29 +51,33 @@ const Main = () => {
                   Vantaa / Finland
                 </Typography>
               </Suspense>
-            </Box>
-          </Box>
-        </Box>
-        <Box style={theme.dataContainer}>
-          <Box style={theme.dataColumn}>
-            <Box style={theme.section}>
-              <Work />
-            </Box>
-            <Box style={theme.section}>
-              <Links />
-            </Box>
-            <Box style={theme.section}>
-              <Hobbies />
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
 
-          <Box style={theme.dataColumn}>
-            <Box style={theme.section}>
-              <Education />
-            </Box>
-            
-          </Box>
-        </Box>
+        </Grid>
+
+        <Grid
+          container
+          justifyContent='center'
+          paddingLeft={{xs:0,sm:4,md:10}}
+          paddingRight={{xs:0,sm:4,md:10}}
+          paddingTop={3}
+        >
+          <Grid item sm={12} md={6}>
+            <Work />
+          </Grid>
+
+          <Grid item sm={12} md={6}>
+            <Education />
+          </Grid>
+
+          <Grid item sm={12} md={6}>
+            <Links />
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <Hobbies />
+          </Grid>
+        </Grid>
       </Paper>
     </Box>
   );

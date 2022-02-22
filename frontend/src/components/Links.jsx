@@ -39,7 +39,7 @@ const Links = () => {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <>
       <Typography variant='h2'>Projects</Typography>
       {links === 'loading' && <Loading />}
       {links === 'error' && <ErrorConnecting />}
@@ -72,7 +72,7 @@ const Links = () => {
           })}
         </List>
       )}
-    </Box>
+    </>
   );
 };
 

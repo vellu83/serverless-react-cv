@@ -3,7 +3,6 @@ import { createTheme } from '@mui/material/styles';
 
 
 export let theme = createTheme()
-console.log(theme.breakpoints.down('xl'))
 
 theme = createTheme(theme, {
   components: {
@@ -53,67 +52,20 @@ theme = createTheme(theme, {
   },
   maincontainer: {
     backgroundColor: 'rgb(255,255,245)',
-    width: '80%',
     marginTop: 30,
     marginBottom:30,
     maxWidth: 1200,
-    minWidth: 450
+    minWidth: 360
   },
 
   header: {
-    padding: 10,
     backgroundColor: '#ff3300',
-    [theme.breakpoints.down('xl')]: {
-      backgroundColor: 'black',
-    },
     marginTop: 15,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-  },
-  headerItem: {
-    display:'flex',
-    paddingLeft:40,
-    paddingRight:40,
-    flexDirection:'row'
-  },
+    marginBottom:15
+   
+  }
 
-  headerAvatar:{
-    display:'flex',
-    paddingRight:40,
-    alignItems:'center',
-  },
 
-  headerText: {
-    display:'flex',
-    flexDirection:'column',
-    paddingTop:6,
-    paddingBottom:6
-    
-  },
 
-  dataContainer :{
-    flexDirection:'row',
-    display:'flex',
-    
-    justifyContent:'center',
-    flexWrap:'wrap'
-    
-  },
-
-  dataColumn: {
-    display: 'flex',
-    width:400,
-    flexDirection: 'column',
-    justifyContent:'flex-start',
-    //minWidth:400,
-  },
-
-  section: {
-    display: 'flex',
-    padding:40
-  },
 
 });
