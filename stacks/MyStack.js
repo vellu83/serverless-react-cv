@@ -67,10 +67,9 @@ export default class MyStack extends sst.Stack {
                 // Pass in the API endpoint to our app
                 REACT_APP_API_URL: api.url,
             },
-
             customDomain: {
-                domainName: stage === 'dev' ? 'dev.vellu.info' : 'vellu.info',
-                hostedZone: 'vellu.info',
+                domainName: stage === 'prod' ? 'vellu.info' : '',
+                hostedZone: stage === 'prod' ? 'vellu.info' : '',
             },
         });
 

@@ -1,10 +1,7 @@
-
 import { createTheme } from '@mui/material/styles';
 
 
-export let theme = createTheme()
-
-theme = createTheme(theme, {
+export let theme = createTheme({
   components: {
     MuiPaper: {
       defaultProps: {
@@ -19,53 +16,68 @@ theme = createTheme(theme, {
     },
     body2: {
       fontSize: 15,
-      color:'black'
+      color: 'black',
     },
     h1: {
       color: 'white',
       fontSize: 65,
       fontWeight: 'bold',
     },
-    h2:{
-      color:'black',
-      fontSize:27,
-      fontWeight:'bold'
+    h2: {
+      color: 'black',
+      fontSize: 27,
+      fontWeight: 'bold',
     },
     h3: {
-      color:'black',
-      fontSize:22,
+      color: 'black',
+      fontSize: 22,
     },
     h4: {
-      color:'#595959',
-      fontSize:19,
+      color: '#595959',
+      fontSize: 19,
     },
     h5: {
-      color:'white',
-      fontSize:19,
-      fontWight:'bold'
-    }
+      color: 'white',
+      fontSize: 19,
+      fontWight: 'bold',
+    },
   },
   palette: {
     background: {
       default: '#f2f2f2',
     },
   },
-  maincontainer: {
-    backgroundColor: 'rgb(255,255,245)',
-    marginTop: 30,
-    marginBottom:30,
-    maxWidth: 1200,
-    minWidth: 360
-  },
-
   header: {
     backgroundColor: '#ff3300',
     marginTop: 15,
-    marginBottom:15
-   
+    marginBottom: 15,
+  },
+});
+
+
+theme = createTheme(theme, {
+  maincontainer: {
+    backgroundColor: 'rgb(255,255,245)',
+    marginTop: 30,
+    marginBottom: 30,
+    maxWidth: 1200,
+    minWidth: 360,
+  },
+  header: {
+    backgroundColor: '#ff3300',
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  griditem: {
+    flexGrow:1,
+    paddingLeft:1,
+    paddinRight:1,
+    paddingBottom:2,
+    height: "100%"
   }
 
-
-
-
+  
 });
+
+
+
