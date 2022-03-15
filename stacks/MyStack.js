@@ -61,16 +61,18 @@ export default class MyStack extends sst.Stack {
             },
         });
 
+        const domain = stage === 'prod' && {
+            domainName: 'vellu.info',
+            hostedZone: 'vellu.info',
+        };
+
         const site = new sst.ReactStaticSite(this, 'ReactSite', {
             path: 'frontend',
             environment: {
                 // Pass in the API endpoint to our app
                 REACT_APP_API_URL: api.url,
             },
-            customDomain: {
-                domainName: stage === 'prod' ? 'vellu.info' : '',
-                hostedZone: stage === 'prod' ? 'vellu.info' : '',
-            },
+            domain
         });
 
         // Show the endpoint in the output
