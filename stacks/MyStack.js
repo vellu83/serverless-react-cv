@@ -4,7 +4,7 @@ export default class MyStack extends sst.Stack {
     constructor(scope, id, props) {
         super(scope, id, props);
 
-        const stage = this.node.root.stage
+        const stage = this.node.root.stage;
 
         // Create a HTTP API
         const api = new sst.Api(this, 'Api', {
@@ -18,6 +18,7 @@ export default class MyStack extends sst.Stack {
                 },
             },
         });
+        api.attachPermissions(sst.PermissionType.ALL);
         api.addRoutes(this, {
             'GET /jobs': {
                 function: {
@@ -61,23 +62,21 @@ export default class MyStack extends sst.Stack {
             },
         });
 
-        const domain = stage === 'prod' && {
-            domainName: 'vellu.info',
-            hostedZone: 'vellu.info',
-        };
 
         const site = new sst.ReactStaticSite(this, 'ReactSite', {
             path: 'frontend',
             environment: {
                 // Pass in the API endpoint to our app
-                REACT_APP_API_URL: api.url,
+                REACT_APP_API_URL: api.customDomainUrl || api.url,
             },
-            domain
+            customDomain: stage === 'prod' ? {
+                domainName: 'vellu.info',
+            } : undefined,
         });
 
         // Show the endpoint in the output
         this.addOutputs({
-            SiteUrl: site.url,
+            SiteUrl: site.customDomainUrl || site.url,
             ApiEndpoint: api.url,
         });
     }

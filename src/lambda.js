@@ -41,7 +41,7 @@ export async function edu(event, context) {
 
     const db = await connectToDatabase();
 
-    const educations = await db.collection('education').find({}).toArray();
+    const educations = await db.collection('educations').find({}).toArray();
 
     return {
         statusCode: 200,

@@ -66,8 +66,7 @@ const Main = () => {
           paddingTop={3}
           
         >
-          <Grid item xs={12}>tööt
-          </Grid>
+        
           <Grid item sm={12} md={6} style={theme.griditem}>
             <Work />
           </Grid>
