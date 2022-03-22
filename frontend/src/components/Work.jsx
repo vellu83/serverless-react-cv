@@ -10,7 +10,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import Loading from './Loading';
 import ErrorConnecting from './ErrorConnecting';
 
-const Work = () => {
+const Work = ({ filter }) => {
   const [jobs, setJobs] = useState(null);
 
   useEffect(() => {
@@ -35,16 +35,30 @@ const Work = () => {
     return <></>;
   }
 
+  let filteredJobs = jobs;
+
+  if (jobs !== 'loading' && String(filter).length > 1) {
+    filteredJobs = jobs.filter(
+      (job) =>
+        job.employer.toLowerCase().includes(filter) ||
+        job.title.toLowerCase().includes(filter) ||
+        job.tasks.toLowerCase().includes(filter)
+    );
+  }
+
 
   return (
     <>
       <Typography variant='h2'>Work experience</Typography>
+      {filter !== '' && (
+        <Typography variant='body2'>(filtered with: {filter})</Typography>
+      )}
       {jobs === 'loading' && <Loading />}
       {jobs === 'error' && <ErrorConnecting />}
 
       {jobs !== 'loading' && jobs !== 'error' && (
         <List sx={{ width: '100%' }}>
-          {jobs.map((job) => {
+          {filteredJobs.map((job) => {
             return (
               <ListItem alignItems='flex-start' key={job.employer}>
                 <ListItemIcon>

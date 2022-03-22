@@ -10,7 +10,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import Loading from './Loading';
 import ErrorConnecting from './ErrorConnecting';
 
-const Education = () => {
+const Education = ({filter}) => {
   const [education, setEducation] = useState(null);
 
   useEffect(() => {
@@ -38,15 +38,29 @@ const Education = () => {
     return <></>;
   }
 
+  let filteredEducation = education;
+  console.log(filteredEducation)
+  
+  if (education !== 'loading' && String(filter).length > 1) {
+    filteredEducation = education.filter(
+      (edu) =>
+        edu.course.toLowerCase().includes(filter) ||
+        edu.school.toLowerCase().includes(filter) 
+    );
+  }
+
   return (
     <>
       <Typography variant='h2'>Education</Typography>
+      {filter !== '' && (
+        <Typography variant='body2'>(filtered with: {filter})</Typography>
+      )}
       {education === 'loading' && <Loading/>}
       {education === 'error' && <ErrorConnecting/>}
 
       {education !== 'loading' && education !== 'error' && (
         <List sx={{ width: '100%' }}>
-          {education.map((edu) => {
+          {filteredEducation.map((edu) => {
             return (
               <ListItem alignItems='flex-start' key={edu.course}>
                 <ListItemIcon>

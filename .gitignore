@@ -13,6 +13,7 @@
 
 # misc
 .DS_Store
+/aws
 
 # sst build output
 .build
